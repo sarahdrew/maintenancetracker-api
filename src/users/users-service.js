@@ -4,9 +4,10 @@ const bcrypt = require('bcryptjs');
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/;
 
 const UsersService = {
-    hasUserWithUserName(db, user_name) {
-        return db('maintenancetracker_users')
-            .where({ user_name })
+    hasUserWithUserName(db, email) {
+        return db
+            .select('maintenancetracker_users')
+            .where({ email })
             .first()
             .then(user => !!user);
     },
@@ -43,7 +44,7 @@ const UsersService = {
         return {
             id: user.id,
             full_name: xss(user.full_name),
-            user_name: xss(user.user_name),
+            email: xss(user.email),
             date_created: user.date_created
         };
     },
