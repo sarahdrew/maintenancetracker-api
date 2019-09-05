@@ -45,7 +45,7 @@ const UsersService = {
             id: user.id,
             full_name: xss(user.full_name),
             email: xss(user.email),
-            date_created: user.date_created
+
         };
     },
 

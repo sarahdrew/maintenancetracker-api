@@ -6,7 +6,7 @@ const UsersService = require('./users-service');
 
 usersRouter
     .post('/', jsonBodyParser, (req, res, next) => {
-        const { password, email, full_name } = req.body;
+        const { password, email, full_name, landlord_tenant } = req.body;
 
         console.log(req.app.get('db'));
 
@@ -50,7 +50,8 @@ usersRouter
                     email,
                     password: hashedPassword,
                     full_name,
-                    date_created: 'now()',
+                    landlord_tenant,
+
                 };
 
                 return UsersService.insertUser(req.app.get('db'), newUser)
@@ -60,9 +61,10 @@ usersRouter
                             .location(path.posix.join(req.originalUrl, `/${user.id}`))
                             .json(UsersService.serializeUser(user));
                     });
-            });
+            })
+            .catch(next);
     })
-// .catch(next);
+
 
 
 module.exports = usersRouter; 

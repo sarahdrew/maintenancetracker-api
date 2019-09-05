@@ -4,7 +4,7 @@ const AuthService = require("./auth-service");
 const authRouter = express.Router();
 const jsonBodyParser = express.json();
 
-authRouter.post("/sign-in", jsonBodyParser, (req, res, next) => {
+authRouter.post("/login", jsonBodyParser, (req, res, next) => {
     const { email, password } = req.body;
     const loginUser = { email, password };
 
@@ -14,7 +14,7 @@ authRouter.post("/sign-in", jsonBodyParser, (req, res, next) => {
                 error: `Missing '${key}' in request body`
             });
 
-    AuthService.getUserWithUserName(req.app.get("db"), loginUser.email)
+    AuthService.getUserWithEmail(req.app.get("db"), loginUser.email)
         //if no dbUser
         .then(dbUser => {
             if (!dbUser)

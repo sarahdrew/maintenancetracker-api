@@ -2,12 +2,12 @@
 
 const RequestsService = {
     getAllRequests(knex) {
-        return knex.select('*').from('maintenacetracker_requests')
+        return knex.select('*').from('maintenancetracker_requests')
     },
     insertRequest(knex, newRequest) {
         return knex
             .insert(newRequest)
-            .into('maintenacetracker_requests')
+            .into('maintenancetracker_requests')
             .returning('*')
             .then(rows => {
                 return rows[0]
@@ -15,17 +15,17 @@ const RequestsService = {
 
     },
     getById(knex, id) {
-        return knex.from('maintenacetracker_requests')
+        return knex.from('maintenancetracker_requests')
             .select('*')
             .where('id', id).first()
     },
     deleteRequest(knex, id) {
-        return knex('maintenacetracker_requests')
+        return knex('maintenancetracker_requests')
             .where({ id })
             .delete()
     },
     updateRequest(knex, id, newRequestFields) {
-        return knex('maintenacetracker_requests')
+        return knex('maintenancetracker_requests')
             .where({ id })
             .update(newRequestFields)
     }

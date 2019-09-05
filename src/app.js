@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const { NODE_ENV } = require("./config");
 const usersRouter = require('./users/users-router')
 const authRouter = require('./auth/auth-router')
+const requestsRouter = require('./requests/requests-router')
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(helmet());
 
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/requests', requestsRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, world, here is the up and running server!');

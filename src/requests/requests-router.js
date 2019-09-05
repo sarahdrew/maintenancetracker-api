@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express')
 const xss = require('xss')
 const RequestsService = require('./requests-service');
-//const JwtMiddleware = require('../middleware/jwt-auth');
+const JwtMiddleware = require('../middleware/jwt-auth');
 
 const requestsRouter = express.Router();
 const jsonParser = express.json();
@@ -54,7 +54,7 @@ requestsRouter
 requestsRouter
     .route('/:request_id')
     .all((req, res, next) => {
-        RequetsService.getById(
+        RequestsService.getById(
             req.app.get('db'),
             req.params.request_id
         )
