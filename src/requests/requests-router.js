@@ -11,6 +11,7 @@ const serializeRequest = request => ({
     id: request.id,
     title: request.title,
     description: request.description,
+    status: request.status
 
 })
 
@@ -52,11 +53,11 @@ requestsRouter
     })
 
 requestsRouter
-    .route('/:request_id')
+    .route('/:requestsId')
     .all((req, res, next) => {
         RequestsService.getById(
             req.app.get('db'),
-            req.params.request_id
+            req.params.requestsId
         )
             .then(request => {
                 if (!request) {
@@ -82,10 +83,10 @@ requestsRouter
             })
             .catch(next)
     })
-    .patch(jsonParser, (req, res, next) => {
-        const { location, size, description } = req.body
-        const requestToUpdate = { location, size, description }
-
+    .put(jsonParser, (req, res, next) => {
+        const { title, description, status } = req.body
+        const requestToUpdate = { title, description, status }
+        requestToUpdate.id = req.params.requestsId;
         const numberOfValues = Object.values(requestToUpdate).filter(Boolean).length
         if (numberOfValues === 0)
             return res.status(400).json({
@@ -96,11 +97,14 @@ requestsRouter
 
         RequestsService.updateRequest(
             req.app.get('db'),
-            req.params.request_id,
+            req.params.requestsId,
             requestToUpdate
         )
             .then(numRowsAffected => {
-                res.status(204).end()
+                res
+                    .status(200)
+                    .json(requestToUpdate)
+                    .end()
             })
             .catch(next)
     })

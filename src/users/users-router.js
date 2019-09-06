@@ -10,7 +10,7 @@ usersRouter
 
         console.log(req.app.get('db'));
 
-        for (const field of ['full_name', 'email', 'password']) {
+        for (const field of ['full_name', 'email', 'password', 'landlord_tenant']) {
             if (!req.body[field])
                 return res.status(400).json({
                     error: `Missing '${field}' in request body`
@@ -31,14 +31,14 @@ usersRouter
             return res.status(400).json({ error: passwordError });
         }
 
-        UsersService.hasUserWithUserName(
+        UsersService.hasUserWithEmail(
             req.app.get('db'),
             email
         )
-            .then(hasUserWithUserName => {
-                console.log('hasUserWithUserName', hasUserWithUserName)
-                if (hasUserWithUserName)
-                    return res.status(400).json({ error: `Username already taken` })
+            .then(hasUserWithEmail => {
+                console.log('hasUserWithEmail', hasUserWithEmail)
+                if (hasUserWithEmail)
+                    return res.status(400).json({ error: `Email already taken` })
 
                 //res.send('ok')
             })
