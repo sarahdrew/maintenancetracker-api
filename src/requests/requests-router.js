@@ -101,7 +101,7 @@ requestsRouter
             req.params.requestsId,
             requestToUpdate
         )
-            .then(numRowsAffected => {
+            .then(requestToUpdate => {
                 res
                     .status(200)
                     .json(requestToUpdate)
