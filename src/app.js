@@ -29,7 +29,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/requests', requestsRouter)
 
 app.get('/', (req, res) => {
-  res.send('Hello, world, here is the up and running server!');
+  res.send('Hello, world!');
 });
 
 app.use(function errorHandler(error, req, res, next) {

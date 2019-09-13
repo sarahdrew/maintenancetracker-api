@@ -8,7 +8,7 @@ usersRouter
     .post('/', jsonBodyParser, (req, res, next) => {
         const { password, email, full_name, landlord_tenant } = req.body;
 
-        console.log(req.app.get('db'));
+
 
         for (const field of ['full_name', 'email', 'password', 'landlord_tenant']) {
             if (!req.body[field])
@@ -36,7 +36,7 @@ usersRouter
             email
         )
             .then(hasUserWithEmail => {
-                console.log('hasUserWithEmail', hasUserWithEmail)
+
                 if (hasUserWithEmail)
                     return res.status(400).json({ error: `Email already taken` })
 

@@ -11,7 +11,8 @@ const serializeRequest = request => ({
     id: request.id,
     title: request.title,
     description: request.description,
-    status: request.status
+    status: request.status,
+    message: request.message
 
 })
 
@@ -29,7 +30,7 @@ requestsRouter
     .post(jsonParser, JwtMiddleware.requireAuth, (req, res, next) => {
         const { title, description } = req.body
         const newRequest = { title, description }
-        console.log(newRequest);
+
 
         for (const [key, value] of Object.entries(newRequest))
             if (value == null)
@@ -84,8 +85,8 @@ requestsRouter
             .catch(next)
     })
     .put(jsonParser, (req, res, next) => {
-        const { title, description, status } = req.body
-        const requestToUpdate = { title, description, status }
+        const { title, description, status, message } = req.body
+        const requestToUpdate = { title, description, status, message }
         requestToUpdate.id = req.params.requestsId;
         const numberOfValues = Object.values(requestToUpdate).filter(Boolean).length
         if (numberOfValues === 0)

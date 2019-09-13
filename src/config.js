@@ -6,3 +6,4 @@ module.exports = {
   CLIENT_ORIGIN: process.env.CLIENT_ORIGIN,
   JWT_SECRET: "jwtSecret"
 };
+
