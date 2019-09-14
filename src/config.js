@@ -7,3 +7,7 @@ module.exports = {
   JWT_SECRET: "jwtSecret"
 };
 
+
+
+//API_BASE_URL="https://maintenancetracker-server.herokuapp.com"
+//CLIENT_ORIGIN="https://maintenancetracker-client.sarahdrew93.now.sh"

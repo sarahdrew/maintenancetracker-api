@@ -101,10 +101,11 @@ requestsRouter
             req.params.requestsId,
             requestToUpdate
         )
-            .then(requestToUpdate => {
+            .then(response => {
+                console.log(`response`, response)
                 res
                     .status(200)
-                    .json(requestToUpdate)
+                    .json(response)
                     .end()
             })
             .catch(next)

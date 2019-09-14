@@ -28,6 +28,7 @@ const RequestsService = {
         return knex('maintenancetracker_requests')
             .where({ id })
             .update(newRequestFields)
+            .returning('*')
     }
 }
 module.exports = RequestsService
