@@ -1,6 +1,6 @@
 # MaintenanceTracker
 
-![Logo](https://github.com/sarahdrew/maintenancetracker-client/blob/master/smaller-logo.png)
+![Logo](https://github.com/sarahdrew/maintenancetracker-client/blob/master/images/smaller-logo.png)
 
 ### Link to [Live App](https://sarahs-maintenancetracker-client.now.sh/)
 
